@@ -1,0 +1,5 @@
+.toast-container { position:fixed; bottom:1rem; right:1rem; display:flex; flex-direction:column; gap:.5rem; z-index:9999; }
+.toast { padding:.75rem 1rem; border-radius:6px; color:#fff; font-size:.9rem; min-width:220px; }
+.success { background:#16a34a; }
+.error   { background:#dc2626; }
+.info    { background:#2563eb; }

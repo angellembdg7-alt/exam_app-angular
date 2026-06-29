@@ -1,0 +1,10 @@
+.page h1 { margin-bottom:1rem; }
+.toolbar { display:flex; gap:1rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap; }
+.toolbar select { padding:.5rem .7rem; border:1px solid #d1d5db; border-radius:6px; }
+.btn-pay { padding:.6rem 1.2rem; background:#00d4aa; color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; }
+.btn-pay:disabled { opacity:.5; cursor:not-allowed; }
+.bill-table { width:100%; border-collapse:collapse; }
+.bill-table th, .bill-table td { padding:.6rem .8rem; border-bottom:1px solid #eee; text-align:left; }
+.bill-table th { background:#f8f9fa; font-size:.85rem; }
+.total { margin-top:1rem; text-align:right; font-size:1rem; }
+.empty, .loading { text-align:center; padding:2rem; color:#9ca3af; }

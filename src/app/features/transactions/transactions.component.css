@@ -1,0 +1,15 @@
+.page h1 { margin-bottom:1rem; }
+.filters { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:1rem; }
+.filters input, .filters select { padding:.5rem .7rem; border:1px solid #d1d5db; border-radius:6px; }
+.btn-reset { padding:.5rem 1rem; background:#f3f4f6; border:1px solid #d1d5db; border-radius:6px; cursor:pointer; }
+.tx-table { width:100%; border-collapse:collapse; }
+.tx-table th, .tx-table td { padding:.6rem .8rem; border-bottom:1px solid #eee; text-align:left; }
+.tx-table th { background:#f8f9fa; font-size:.85rem; }
+.badge { padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }
+.badge.deposit { background:#d1fae5; color:#065f46; }
+.badge.withdrawal { background:#fee2e2; color:#991b1b; }
+.badge.transfer { background:#dbeafe; color:#1e40af; }
+.badge.payment { background:#fef3c7; color:#92400e; }
+.credit { color:#16a34a; font-weight:600; }
+.debit  { color:#dc2626; font-weight:600; }
+.empty, .loading { text-align:center; padding:2rem; color:#9ca3af; }

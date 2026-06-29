@@ -1,0 +1,21 @@
+
+<ng-container *ngIf="isLoggedIn()">
+  <nav class="navbar">
+    <span class="brand">BadWallet</span>
+    <div class="nav-links">
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/transactions" routerLinkActive="active">Transactions</a>
+      <a routerLink="/transfer" routerLinkActive="active">Transfert</a>
+      <a routerLink="/bills/current" routerLinkActive="active">Factures</a>
+      <a *ngIf="isAgent()" routerLink="/admin/wallets" routerLinkActive="active">Admin</a>
+    </div>
+    <div class="navbar-right">
+      <span class="balance">{{ balanceStore.balance() | xof }}</span>
+      <button (click)="logout()" class="btn-logout">Deconnexion</button>
+    </div>
+  </nav>
+</ng-container>
+<main [class.container]="isLoggedIn()">
+  <router-outlet></router-outlet>
+</main>
+<app-toast></app-toast>

@@ -1,0 +1,5 @@
+.page h1 { margin-bottom:1rem; }
+.bill-table { width:100%; border-collapse:collapse; }
+.bill-table th, .bill-table td { padding:.6rem .8rem; border-bottom:1px solid #eee; text-align:left; }
+.bill-table th { background:#f8f9fa; font-size:.85rem; }
+.empty, .loading { text-align:center; padding:2rem; color:#9ca3af; }

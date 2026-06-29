@@ -1,0 +1,4 @@
+
+<div class="toast-container">
+  <div *ngFor="let t of toast.toasts()" class="toast" [ngClass]="t.type">{{ t.text }}</div>
+</div>

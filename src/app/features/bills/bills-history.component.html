@@ -1,0 +1,23 @@
+
+<div class="page">
+  <h1>Historique des paiements</h1>
+  <p class="loading" *ngIf="loading()">Chargement...</p>
+  <ng-container *ngIf="!loading()">
+    <table class="bill-table">
+      <thead>
+        <tr><th>Fournisseur</th><th>Reference</th><th>Montant</th><th>Date</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of history()">
+          <td>{{ f.fournisseur }}</td>
+          <td>{{ f.reference }}</td>
+          <td>{{ f.montant | xof }}</td>
+          <td>{{ f.dateEcheance | date:"dd/MM/yyyy" }}</td>
+        </tr>
+        <tr *ngIf="history().length === 0">
+          <td colspan="4" class="empty">Aucun paiement.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>

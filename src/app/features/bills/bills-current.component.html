@@ -1,0 +1,36 @@
+
+<div class="page">
+  <h1>Factures impayes</h1>
+  <div class="toolbar">
+    <select (change)="filterBy($any($event.target).value)">
+      <option *ngFor="let f of fournisseurs">{{ f }}</option>
+    </select>
+    <button (click)="paySelected()" [disabled]="selected().length === 0 || paying()" class="btn-pay">
+      {{ paying() ? 'Paiement...' : 'Payer (' + selected().length + ')' }}
+    </button>
+  </div>
+  <p class="loading" *ngIf="loading()">Chargement...</p>
+  <ng-container *ngIf="!loading()">
+    <table class="bill-table">
+      <thead>
+        <tr>
+          <th><input type="checkbox" (change)="toggleAll($any($event.target).checked)" /></th>
+          <th>Fournisseur</th><th>Reference</th><th>Montant</th><th>Echeance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of filtered()">
+          <td><input type="checkbox" [checked]="isSelected(f.id)" (change)="toggle(f.id)" /></td>
+          <td>{{ f.fournisseur }}</td>
+          <td>{{ f.reference }}</td>
+          <td>{{ f.montant | xof }}</td>
+          <td>{{ f.dateEcheance }}</td>
+        </tr>
+        <tr *ngIf="filtered().length === 0">
+          <td colspan="5" class="empty">Aucune facture.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="total">Total : <strong>{{ total() | xof }}</strong></div>
+  </ng-container>
+</div>

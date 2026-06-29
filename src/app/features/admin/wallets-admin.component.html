@@ -1,0 +1,59 @@
+
+<div class="page">
+  <h1>Gestion des portefeuilles</h1>
+  <div class="search-bar">
+    <input [value]="searchPhone()" (input)="searchPhone.set($any($event.target).value)" placeholder="Rechercher par telephone..." />
+    <button (click)="search()" class="btn">Rechercher</button>
+  </div>
+  <div class="card" *ngIf="found()">
+    <p><strong>Nom :</strong> {{ found()!.ownerName }}</p>
+    <p><strong>Tel :</strong> {{ found()!.phone | phone }}</p>
+    <p><strong>Solde :</strong> {{ found()!.balance | xof }}</p>
+    <div class="ops">
+      <form [formGroup]="depositForm" (ngSubmit)="deposit(found()!.id)" class="op-form">
+        <input type="number" formControlName="amount" placeholder="Depot" />
+        <button type="submit" class="btn green">Deposer</button>
+      </form>
+      <form [formGroup]="withdrawForm" (ngSubmit)="withdraw(found()!.phone)" class="op-form">
+        <input type="number" formControlName="amount" placeholder="Retrait" />
+        <button type="submit" class="btn red">Retirer</button>
+      </form>
+    </div>
+  </div>
+  <details class="create-section">
+    <summary>Creer un portefeuille</summary>
+    <form [formGroup]="createForm" (ngSubmit)="createWallet()" class="card create-form">
+      <div class="field">
+        <label>Nom complet</label>
+        <input formControlName="ownerName" placeholder="Prenom Nom" />
+      </div>
+      <div class="field">
+        <label>Telephone</label>
+        <input formControlName="phone" placeholder="77 XXX XX XX" />
+        <span class="err" *ngIf="createForm.get('phone')?.touched && createForm.get('phone')?.hasError('invalidPhone')">Numero invalide.</span>
+      </div>
+      <button type="submit" [disabled]="createForm.invalid" class="btn">Creer</button>
+    </form>
+  </details>
+  <table class="wallet-table">
+    <thead>
+      <tr><th>Telephone</th><th>Nom</th><th>Solde</th><th>Cree le</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let w of wallets()">
+        <td>{{ w.phone | phone }}</td>
+        <td>{{ w.ownerName }}</td>
+        <td>{{ w.balance | xof }}</td>
+        <td>{{ w.createdAt }}</td>
+      </tr>
+      <tr *ngIf="wallets().length === 0">
+        <td colspan="4" class="empty">Aucun portefeuille.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="page() === 0">Precedent</button>
+    <span>Page {{ page() + 1 }} / {{ totalPages() }}</span>
+    <button (click)="nextPage()" [disabled]="page() >= totalPages() - 1">Suivant</button>
+  </div>
+</div>

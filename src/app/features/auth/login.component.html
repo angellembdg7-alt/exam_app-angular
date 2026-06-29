@@ -1,0 +1,46 @@
+
+<div class="login-wrapper" [ngClass]="{
+  'role-select-bg': !selectedRole(),
+  'client-bg': selectedRole() === 'CLIENT',
+  'agent-bg': selectedRole() === 'AGENT'
+}">
+  <div class="login-card" [ngClass]="{
+    'client-card': selectedRole() === 'CLIENT',
+    'agent-card': selectedRole() === 'AGENT'
+  }">
+    <div class="brand">
+      <h1>BadWallet</h1>
+      <p>{{ selectedRole() ? 'Connexion ' + roleLabel : 'Choisissez votre profil' }}</p>
+    </div>
+
+    <ng-container *ngIf="!selectedRole()">
+      <div class="role-prompt">
+        <p class="subtitle">Avant de vous connecter, indiquez si vous êtes :</p>
+        <div class="role-options">
+          <button type="button" class="role-option client" (click)="chooseRole('CLIENT')">Client</button>
+          <button type="button" class="role-option agent" (click)="chooseRole('AGENT')">Agent</button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="selectedRole()">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="field">
+          <label>Telephone</label>
+          <input formControlName="phone" placeholder="77 XXX XX XX" />
+          <span class="err" *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid">Numero requis.</span>
+        </div>
+        <div class="field">
+          <label>Mot de passe</label>
+          <input type="password" formControlName="password" placeholder="********" />
+          <span class="err" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">Mot de passe requis.</span>
+        </div>
+        <div class="alert" *ngIf="error()">{{ error() }}</div>
+        <button type="submit" [disabled]="form.invalid || loading()" class="btn-submit">
+          {{ loading() ? 'Connexion...' : 'Se connecter' }}
+        </button>
+      </form>
+      <button type="button" class="link-btn" (click)="goBack()">Changer de profil</button>
+    </ng-container>
+  </div>
+</div>

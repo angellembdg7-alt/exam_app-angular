@@ -1,0 +1,20 @@
+.dashboard { display:flex; flex-direction:column; gap:1.5rem; }
+.balance-card { background:linear-gradient(135deg,#1a1a2e,#16213e); color:#fff; padding:2rem; border-radius:12px; display:flex; flex-direction:column; gap:.5rem; max-width:380px; }
+.label { font-size:.85rem; opacity:.7; }
+.amount { font-size:2rem; font-weight:700; color:#00d4aa; }
+.phone { font-size:.9rem; opacity:.6; }
+.btn-refresh { align-self:flex-start; background:transparent; border:1px solid #00d4aa; color:#00d4aa; padding:.3rem .8rem; border-radius:6px; cursor:pointer; }
+.quick-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+.action-btn { padding:.75rem 1.5rem; background:#1a1a2e; color:#fff; border-radius:8px; text-decoration:none; font-weight:500; }
+.action-btn:hover { background:#00d4aa; color:#000; }
+.tx-table { width:100%; border-collapse:collapse; }
+.tx-table th, .tx-table td { padding:.6rem .8rem; border-bottom:1px solid #eee; text-align:left; }
+.tx-table th { background:#f8f9fa; font-size:.85rem; }
+.badge { padding:.2rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; }
+.badge.deposit { background:#d1fae5; color:#065f46; }
+.badge.withdrawal { background:#fee2e2; color:#991b1b; }
+.badge.transfer { background:#dbeafe; color:#1e40af; }
+.badge.payment { background:#fef3c7; color:#92400e; }
+.credit { color:#16a34a; font-weight:600; }
+.debit  { color:#dc2626; font-weight:600; }
+.empty, .loading { text-align:center; padding:2rem; color:#9ca3af; }

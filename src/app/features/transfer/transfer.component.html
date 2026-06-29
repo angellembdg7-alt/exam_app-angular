@@ -1,0 +1,25 @@
+
+<div class="page">
+  <h1>Transfert</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card">
+    <div class="field">
+      <label>Numero destinataire</label>
+      <input formControlName="receiverPhone" placeholder="77 XXX XX XX" />
+      <ng-container *ngIf="form.get('receiverPhone')?.touched">
+        <span class="err" *ngIf="form.get('receiverPhone')?.hasError('required')">Champ obligatoire.</span>
+        <span class="err" *ngIf="form.get('receiverPhone')?.hasError('invalidPhone')">Numero invalide.</span>
+        <span class="err" *ngIf="form.get('receiverPhone')?.hasError('samePhone')">Destinataire different requis.</span>
+      </ng-container>
+    </div>
+    <div class="field">
+      <label>Montant (XOF)</label>
+      <input type="number" formControlName="amount" min="1" placeholder="0" />
+      <span class="err" *ngIf="form.get('amount')?.touched && form.get('amount')?.hasError('required')">Champ obligatoire.</span>
+      <span class="err" *ngIf="form.get('amount')?.touched && form.get('amount')?.hasError('min')">Montant superieur a 0 requis.</span>
+    </div>
+    <div class="summary">Solde actuel : <strong>{{ balanceStore.balance() | xof }}</strong></div>
+    <button type="submit" [disabled]="form.invalid || loading()" class="btn-primary">
+      {{ loading() ? 'Envoi...' : 'Envoyer' }}
+    </button>
+  </form>
+</div>
